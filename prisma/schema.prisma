@@ -1,6 +1,6 @@
 generator client {
-    provider = "prisma-client-js"
-    previewFeatures = ["jsonProtocol"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
@@ -8,8 +8,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+enum Status {
+  PENDING
+  SHIPPING
+  DELIVERED
+}
+
+model User {
+  id                  String   @id @default(cuid())
+  name                String
+  email               String   @unique
+  nickname            String   @unique
+  usersThatSharedList String[]
+  profilePictureURL   String
+  buys                Buys[]
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model Buys {
+  id                String   @id @default(cuid())
+  link              String
+  description       String
+  storeName         String
+  estimatedShipping String
+  price             String
+  zipCode           String
+  shippingCode      String?
+  status            Status
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }

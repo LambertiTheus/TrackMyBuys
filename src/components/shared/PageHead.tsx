@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-function PageHeader({ title }: { title: string }) {
+function PageHead({ title }: { title: string }) {
     return (
         <Head>
             <meta name="description" content="" />
@@ -10,4 +10,4 @@ function PageHeader({ title }: { title: string }) {
     )
 }
 
-export default PageHeader
+export default PageHead

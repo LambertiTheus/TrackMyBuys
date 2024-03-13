@@ -3,12 +3,13 @@ import { type AppType } from "next/app"
 import { api } from "~/utils/api"
 import "~/styles/globals.css"
 import BackgroundWrapper from "~/components/shared/BackgroundWrapper"
-import PageHeader from "~/components/shared/PageHeader"
+import Header from "~/components/shared/Header"
+import PageHead from "~/components/shared/PageHead"
 
 const App: AppType = ({ Component, pageProps }) => {
   return (
     <>
-      <PageHeader title={"Sign-in or Log-in"} />
+      <PageHead title={"Sign-in or Log-in"} />
       <ClerkProvider
         appearance={{
           variables: {
@@ -18,15 +19,7 @@ const App: AppType = ({ Component, pageProps }) => {
       >
         <BackgroundWrapper>
           <SignedIn>
-            <div className="z-30 fixed w-full py-2 bg-darkgrey border-b">
-              <div className="w-10/12 mx-auto flex justify-between items-center">
-                <div className="flex items-center">
-                  <UserButton />
-                  <div style={{ marginLeft: '0.5rem' }}>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Header />
             <Component {...pageProps} />
           </SignedIn>
 
