@@ -1,7 +1,9 @@
 import { type NextPage } from "next"
 import Head from "next/head"
 import Link from "next/link"
+import ModalComponent from "~/components/shared/ModalComponent"
 import PageHead from "~/components/shared/PageHead"
+// import CreateAccount from "~/components/shared/createAccountModal"
 import { api } from "~/utils/api"
 
 const Home: NextPage = () => {
@@ -28,17 +30,16 @@ const Home: NextPage = () => {
                 database and authentication.
               </div>
             </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
+            <ModalComponent
+              isOpen={false}
+              openButtonTitle="abrir                                 "
+              closeButtonTitle="fechar"
+              onChange={() => ''}>
+              <div>
+                test
               </div>
-            </Link>
+            </ModalComponent>
+            {/* <CreateAccount/> */}
           </div>
           <p className="text-2xl text-white">
           </p>

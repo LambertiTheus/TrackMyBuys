@@ -7,6 +7,7 @@ import Header from "~/components/shared/Header"
 import PageHead from "~/components/shared/PageHead"
 
 const App: AppType = ({ Component, pageProps }) => {
+  const { data } = api.user.userInfo.useQuery()
   return (
     <>
       <PageHead title={"Sign-in or Log-in"} />
@@ -21,6 +22,7 @@ const App: AppType = ({ Component, pageProps }) => {
           <SignedIn>
             <Header />
             <Component {...pageProps} />
+            {data === undefined && <div>não tem CONTA</div>}
           </SignedIn>
 
           <SignedOut>
