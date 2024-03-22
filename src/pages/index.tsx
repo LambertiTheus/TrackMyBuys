@@ -1,9 +1,6 @@
 import { type NextPage } from "next"
-import Head from "next/head"
 import Link from "next/link"
-import ModalComponent from "~/components/shared/ModalComponent"
 import PageHead from "~/components/shared/PageHead"
-// import CreateAccount from "~/components/shared/createAccountModal"
 import { api } from "~/utils/api"
 
 const Home: NextPage = () => {
@@ -30,16 +27,6 @@ const Home: NextPage = () => {
                 database and authentication.
               </div>
             </Link>
-            <ModalComponent
-              isOpen={false}
-              openButtonTitle="abrir                                 "
-              closeButtonTitle="fechar"
-              onChange={() => ''}>
-              <div>
-                test
-              </div>
-            </ModalComponent>
-            {/* <CreateAccount/> */}
           </div>
           <p className="text-2xl text-white">
           </p>

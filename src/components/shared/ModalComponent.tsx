@@ -1,51 +1,44 @@
-import React, { type ReactNode, useState } from 'react'
+import React, { type ReactNode } from 'react'
+import ButtonComponent from './ButtonComponent'
 
 interface ModalComponentProps {
   title?: string
   children: ReactNode
-  isOpen: boolean
-  onClick?: () => void
-  onChange: (value: string) => void
   openButtonTitle: string
-  closeButtonTitle: string
+  closeButtonTitle?: string
+  removeCloseButton?: boolean
+  modalOpen: boolean
+  setModalOpen: (b: boolean) => void
 }
 
 const ModalComponent = ({
-  children,
-  onChange,
-  isOpen,
   title,
+  children,
   closeButtonTitle,
-  openButtonTitle
+  openButtonTitle,
+  removeCloseButton,
+  modalOpen,
+  setModalOpen
 }: ModalComponentProps) => {
-  const [modalOpen, setModalOpen] = useState(false)
-
-  const openModal = () => {
-    setModalOpen(true)
-  }
-  const closeModal = () => {
-    setModalOpen(false)
-  }
-
   return (
     <>
-      <button className="btn" onClick={openModal}>{openButtonTitle}</button>
-      {isOpen &&
+      <ButtonComponent onClick={() => setModalOpen(true)}>
+        {openButtonTitle}
+      </ButtonComponent>
+      {modalOpen &&
         <dialog id="modal" open={modalOpen} className="modal">
           <div className="modal-box">
-            <button
-              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-              onClick={() => {
-                closeModal()
-                onChange("fechar")
-              }}
-            >
-              {closeButtonTitle}
-            </button>
-            <h3 className="font-bold text-lg">{title}</h3>
-            <p className="py-4">{children}</p>
+            {!removeCloseButton &&
+              <ButtonComponent
+                onClick={() => setModalOpen(false)}
+              >
+                {closeButtonTitle}
+              </ButtonComponent>
+            }
+            <h3 className="font-bold  text-lg">{title}</h3>
+            <div className="py-">{children}</div>
           </div>
-        </dialog >
+        </dialog>
       }
     </>
   )

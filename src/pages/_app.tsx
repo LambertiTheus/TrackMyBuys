@@ -1,13 +1,13 @@
-import { ClerkProvider, SignIn, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
+import { ClerkProvider, SignIn, SignedIn, SignedOut } from "@clerk/nextjs"
 import { type AppType } from "next/app"
 import { api } from "~/utils/api"
 import "~/styles/globals.css"
 import BackgroundWrapper from "~/components/shared/BackgroundWrapper"
 import Header from "~/components/shared/Header"
 import PageHead from "~/components/shared/PageHead"
+import UserRegistrationModal from "~/components/modals/RegisterUserModal"
 
 const App: AppType = ({ Component, pageProps }) => {
-  const { data } = api.user.userInfo.useQuery()
   return (
     <>
       <PageHead title={"Sign-in or Log-in"} />
@@ -22,7 +22,11 @@ const App: AppType = ({ Component, pageProps }) => {
           <SignedIn>
             <Header />
             <Component {...pageProps} />
-            {data === undefined && <div>não tem CONTA</div>}
+            <UserRegistrationModal
+              isOpen={false}
+              onClose={() => ''}
+            />
+
           </SignedIn>
 
           <SignedOut>
